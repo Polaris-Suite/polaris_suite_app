@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polaris_suite_app/resources/colors/colors.dart';
 import 'package:polaris_suite_app/utils/routes/routes.dart';
 import 'package:polaris_suite_app/utils/routes/routes_name.dart';
 
@@ -13,7 +14,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Polaris Suite',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'QuickSand'),
+      theme: ThemeData(
+          primarySwatch: Colors.blue,
+          fontFamily: 'QuickSand',
+          iconTheme: const IconThemeData(
+            color: AppColors.neutralDark,
+          )),
       initialRoute: RoutesName.login,
       onGenerateRoute: Routes.generateRoutes,
     );

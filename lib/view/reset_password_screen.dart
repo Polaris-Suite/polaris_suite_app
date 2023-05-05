@@ -8,18 +8,25 @@ import 'package:polaris_suite_app/resources/images/images.dart';
 import 'package:polaris_suite_app/resources/styles/text_styles.dart';
 import 'package:polaris_suite_app/utils/routes/routes_name.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+        backgroundColor: Colors.grey.shade200,
+        elevation: 0,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -31,9 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                vSizedBox1,
                 Image(image: AssetImage(backgroundImage)),
-                vSizedBox1,
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16,
@@ -43,76 +48,33 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Login',
+                        'Reset Password',
                         style: AppTextStyle.textH1,
                       ),
                       vSizedBox1,
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, RoutesName.signup);
-                        },
-                        child: RichText(
-                          text: const TextSpan(
-                            text: "Don't have and account? ",
-                            style: AppTextStyle.body,
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: 'Register now!',
-                                style: AppTextStyle.bodyBlue,
-                              ),
-                            ],
-                          ),
+                      RichText(
+                        text: const TextSpan(
+                          text: "Already have an account? ",
+                          style: AppTextStyle.body,
                         ),
                       ),
                       vSizedBox3,
-                      const Text(
-                        'Email',
-                        style: AppTextStyle.body,
-                      ),
-                      CustomTextField(),
-                      vSizedBox2,
                       const Text(
                         'Password',
                         style: AppTextStyle.body,
                       ),
                       CustomTextField(),
+                      vSizedBox2,
+                      const Text(
+                        'Confirm Password',
+                        style: AppTextStyle.body,
+                      ),
+                      CustomTextField(),
                       vSizedBox3,
                       CustomButton(
-                        btntxt: 'Login',
+                        btntxt: 'Confirm',
                         btntxtColor: Colors.white,
                         color: AppColors.primaryColor,
-                        onPressed: () {},
-                      ),
-                      vSizedBox2,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, RoutesName.forgotPassword);
-                            },
-                            child: const Text(
-                              "Forgot Password?",
-                              style: AppTextStyle.bodyBlue,
-                            ),
-                          ),
-                        ],
-                      ),
-                      vSizedBox1,
-                      const CustomDivider(),
-                      vSizedBox2,
-                      CustomButton(
-                        btntxt: 'Google',
-                        btntxtColor: AppColors.neutralDark,
-                        color: Colors.white,
-                        onPressed: () {},
-                      ),
-                      vSizedBox2,
-                      CustomButton(
-                        btntxt: 'Github',
-                        btntxtColor: Colors.white,
-                        color: AppColors.neutralDark,
                         onPressed: () {},
                       ),
                       vSizedBox3,
