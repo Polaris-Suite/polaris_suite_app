@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:polaris_suite_app/resources/colors/colors.dart';
 import 'package:polaris_suite_app/resources/components/custom_button.dart';
-import 'package:polaris_suite_app/resources/components/custom_divider.dart';
 import 'package:polaris_suite_app/resources/components/custom_textfield.dart';
 import 'package:polaris_suite_app/resources/dimensions/dimensions.dart';
 import 'package:polaris_suite_app/resources/images/images.dart';
 import 'package:polaris_suite_app/resources/styles/text_styles.dart';
-import 'package:polaris_suite_app/utils/routes/routes_name.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
