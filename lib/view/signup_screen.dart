@@ -7,6 +7,7 @@ import 'package:polaris_suite_app/resources/dimensions/dimensions.dart';
 import 'package:polaris_suite_app/resources/images/images.dart';
 import 'package:polaris_suite_app/resources/styles/text_styles.dart';
 import 'package:polaris_suite_app/utils/routes/routes_name.dart';
+import 'package:polaris_suite_app/utils/utils.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -16,6 +17,15 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final FocusNode _emailFocusNode = FocusNode();
+  final TextEditingController _userNameController = TextEditingController();
+  final FocusNode _userNameFocusNode = FocusNode();
+  final TextEditingController _passwordController = TextEditingController();
+  final FocusNode _passwordFocusNode = FocusNode();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  final FocusNode _confirmPasswordFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,25 +78,82 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         'Email',
                         style: AppTextStyle.body,
                       ),
-                      CustomTextField(),
+                      CustomTextField(
+                        textEditingController: _emailController,
+                        focusNode: _emailFocusNode,
+                        keyboardType: TextInputType.emailAddress,
+                        obscureText: false,
+                        onValidator: (value) {
+                          if (value.isEmpty || value == null) {
+                            return 'Enter valid email';
+                          }
+                          return null;
+                        },
+                        onFiledSubmittedValue: (newValue) {
+                          Utils.fieldFocus(
+                              context, _emailFocusNode, _userNameFocusNode);
+                        },
+                      ),
                       vSizedBox2,
                       const Text(
                         'Username',
                         style: AppTextStyle.body,
                       ),
-                      CustomTextField(),
+                      CustomTextField(
+                        textEditingController: _userNameController,
+                        focusNode: _userNameFocusNode,
+                        keyboardType: TextInputType.name,
+                        obscureText: false,
+                        onValidator: (value) {
+                          if (value == null) {
+                            return 'Enter valid username';
+                          }
+                          return null;
+                        },
+                        onFiledSubmittedValue: (newValue) {
+                          Utils.fieldFocus(
+                              context, _userNameFocusNode, _passwordFocusNode);
+                        },
+                      ),
                       vSizedBox2,
                       const Text(
                         'Password',
                         style: AppTextStyle.body,
                       ),
-                      CustomTextField(),
+                      CustomTextField(
+                        textEditingController: _passwordController,
+                        focusNode: _passwordFocusNode,
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true,
+                        onValidator: (value) {
+                          if (value == null) {
+                            return 'Enter valid password';
+                          }
+                          return null;
+                        },
+                        onFiledSubmittedValue: (newValue) {
+                          Utils.fieldFocus(context, _passwordFocusNode,
+                              _confirmPasswordFocusNode);
+                        },
+                      ),
                       vSizedBox2,
                       const Text(
                         'Confirm Password',
                         style: AppTextStyle.body,
                       ),
-                      CustomTextField(),
+                      CustomTextField(
+                        textEditingController: _confirmPasswordController,
+                        focusNode: _confirmPasswordFocusNode,
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true,
+                        onValidator: (value) {
+                          if (value == null) {
+                            return 'Enter valid password';
+                          }
+                          return null;
+                        },
+                        onFiledSubmittedValue: (newValue) {},
+                      ),
                       vSizedBox3,
                       CustomButton(
                         btntxt: 'Register',

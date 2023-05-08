@@ -5,6 +5,7 @@ import 'package:polaris_suite_app/resources/components/custom_textfield.dart';
 import 'package:polaris_suite_app/resources/dimensions/dimensions.dart';
 import 'package:polaris_suite_app/resources/images/images.dart';
 import 'package:polaris_suite_app/resources/styles/text_styles.dart';
+import 'package:polaris_suite_app/utils/utils.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -14,6 +15,11 @@ class ResetPasswordScreen extends StatefulWidget {
 }
 
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
+  final TextEditingController _passwordController = TextEditingController();
+  final FocusNode _passwordFocusNode = FocusNode();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  final FocusNode _confirmPasswordFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,13 +67,40 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         'Password',
                         style: AppTextStyle.body,
                       ),
-                      CustomTextField(),
+                      CustomTextField(
+                        textEditingController: _passwordController,
+                        focusNode: _passwordFocusNode,
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true,
+                        onValidator: (value) {
+                          if (value == null) {
+                            return 'Enter valid password';
+                          }
+                          return null;
+                        },
+                        onFiledSubmittedValue: (newValue) {
+                          Utils.fieldFocus(context, _passwordFocusNode,
+                              _confirmPasswordFocusNode);
+                        },
+                      ),
                       vSizedBox2,
                       const Text(
                         'Confirm Password',
                         style: AppTextStyle.body,
                       ),
-                      CustomTextField(),
+                      CustomTextField(
+                        textEditingController: _confirmPasswordController,
+                        focusNode: _confirmPasswordFocusNode,
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true,
+                        onValidator: (value) {
+                          if (value == null) {
+                            return 'Enter valid password';
+                          }
+                          return null;
+                        },
+                        onFiledSubmittedValue: (newValue) {},
+                      ),
                       vSizedBox3,
                       CustomButton(
                         btntxt: 'Confirm',

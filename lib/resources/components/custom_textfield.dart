@@ -4,9 +4,23 @@ import 'package:polaris_suite_app/resources/colors/colors.dart';
 class CustomTextField extends StatelessWidget {
   CustomTextField({
     super.key,
+    required this.textEditingController,
+    required this.focusNode,
+    required this.keyboardType,
+    required this.obscureText,
+    required this.onValidator,
+    required this.onFiledSubmittedValue,
+    this.enable = true,
+    this.autofocus = true,
   });
 
-  // TextEditingController? textEditingController = TextEditingController();
+  final TextEditingController? textEditingController;
+  final FocusNode focusNode;
+  final TextInputType keyboardType;
+  final bool obscureText;
+  final FormFieldValidator onValidator;
+  final FormFieldSetter onFiledSubmittedValue;
+  final bool enable, autofocus;
 
   @override
   Widget build(BuildContext context) {
@@ -17,16 +31,24 @@ class CustomTextField extends StatelessWidget {
         borderRadius: BorderRadius.circular(3),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 8.0,
-          vertical: 5,
+        padding: const EdgeInsets.only(
+          left: 8.0,
+          right: 8.0,
+          bottom: 7.0,
         ),
-        child: TextFormField(
-          style: const TextStyle(
-            color: AppColors.neutralDark,
-          ),
-          decoration: const InputDecoration(
-            border: InputBorder.none,
+        child: Center(
+          child: TextFormField(
+            controller: textEditingController,
+            focusNode: focusNode,
+            keyboardType: keyboardType,
+            obscureText: obscureText,
+            validator: onValidator,
+            style: const TextStyle(
+              color: AppColors.neutralDark,
+            ),
+            decoration: const InputDecoration(
+              border: InputBorder.none,
+            ),
           ),
         ),
       ),

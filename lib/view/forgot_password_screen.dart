@@ -16,6 +16,9 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+  final TextEditingController _forgotPasswordController =
+      TextEditingController();
+  final FocusNode _forgotPasswordFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +72,19 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         'Email',
                         style: AppTextStyle.body,
                       ),
-                      CustomTextField(),
+                      CustomTextField(
+                        textEditingController: _forgotPasswordController,
+                        focusNode: _forgotPasswordFocusNode,
+                        keyboardType: TextInputType.emailAddress,
+                        obscureText: true,
+                        onValidator: (value) {
+                          if (value == null) {
+                            return 'Enter valid email';
+                          }
+                          return null;
+                        },
+                        onFiledSubmittedValue: (newValue) {},
+                      ),
                       vSizedBox2,
                       CustomButton(
                         btntxt: 'Reset',
