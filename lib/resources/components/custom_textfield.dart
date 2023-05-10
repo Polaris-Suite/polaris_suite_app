@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:polaris_suite_app/resources/colors/colors.dart';
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField({
+  const CustomTextField({
     super.key,
     required this.textEditingController,
     required this.focusNode,
@@ -10,8 +10,8 @@ class CustomTextField extends StatelessWidget {
     required this.obscureText,
     required this.onValidator,
     required this.onFiledSubmittedValue,
-    this.enable = true,
-    this.autofocus = true,
+    this.enable = false,
+    this.autofocus = false,
   });
 
   final TextEditingController? textEditingController;
@@ -24,30 +24,32 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(3),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(
-          left: 8.0,
-          right: 8.0,
-          bottom: 7.0,
+    return Center(
+      child: TextFormField(
+        controller: textEditingController,
+        focusNode: focusNode,
+        keyboardType: keyboardType,
+        obscureText: obscureText,
+        validator: onValidator,
+        style: const TextStyle(
+          color: AppColors.neutralDark,
         ),
-        child: Center(
-          child: TextFormField(
-            controller: textEditingController,
-            focusNode: focusNode,
-            keyboardType: keyboardType,
-            obscureText: obscureText,
-            validator: onValidator,
-            style: const TextStyle(
-              color: AppColors.neutralDark,
+        decoration: const InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: AppColors.primaryColor,
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(4),
+              )),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColors.primaryColor,
             ),
-            decoration: const InputDecoration(
-              border: InputBorder.none,
+            borderRadius: BorderRadius.all(
+              Radius.circular(4),
             ),
           ),
         ),

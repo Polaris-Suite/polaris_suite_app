@@ -80,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         CustomTextField(
                           textEditingController: _emailController,
                           focusNode: emailFocusNode,
-                          onFiledSubmittedValue: (newValue) {
+                          onFiledSubmittedValue: (_) {
                             Utils.fieldFocus(
                                 context, emailFocusNode, passwordFocusNode);
                           },
@@ -116,7 +116,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           btntxt: 'Login',
                           btntxtColor: Colors.white,
                           color: AppColors.primaryColor,
-                          onPressed: () {},
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {}
+                          },
                         ),
                         vSizedBox2,
                         Row(
@@ -148,11 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           btntxt: 'Github',
                           btntxtColor: Colors.white,
                           color: AppColors.neutralDark,
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              
-                            }
-                          },
+                          onPressed: () {},
                         ),
                         vSizedBox3,
                       ],
