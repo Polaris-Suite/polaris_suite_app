@@ -8,6 +8,8 @@ import 'package:polaris_suite_app/resources/images/images.dart';
 import 'package:polaris_suite_app/resources/styles/text_styles.dart';
 import 'package:polaris_suite_app/utils/routes/routes_name.dart';
 import 'package:polaris_suite_app/utils/utils.dart';
+import 'package:polaris_suite_app/view_model/auth_view_model.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -29,6 +31,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
+    // final authViewModelProvider = Provider.of<AuthViewModel>(context);
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       body: SafeArea(
@@ -164,6 +167,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           color: AppColors.primaryColor,
                           onPressed: () {
                             // if (_key.currentState!.validate()) {}
+                            Map data = {
+                              "email": _emailController.text.toString(),
+                              "name": _userNameController.text.toLowerCase(),
+                              "password": _passwordController.text.toString(),
+                            };
+                            // authViewModelProvider.registerApi(data, context);
                           },
                         ),
                         vSizedBox2,

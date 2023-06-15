@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           iconTheme: const IconThemeData(
             color: AppColors.neutralDark,
           )),
-      initialRoute: RoutesName.login,
+      initialRoute: RoutesName.signup,
       onGenerateRoute: Routes.generateRoutes,
     );
   }

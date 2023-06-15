@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:polaris_suite_app/resources/colors/colors.dart';
-import 'package:polaris_suite_app/resources/styles/text_styles.dart';
+// import 'package:polaris_suite_app/resources/styles/text_styles.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
