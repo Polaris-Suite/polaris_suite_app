@@ -9,6 +9,7 @@ class Utils {
     showFlushbar(
       context: context,
       flushbar: Flushbar(
+        duration: const Duration(seconds: 2),
         message: mssg,
         backgroundColor: color,
         forwardAnimationCurve: Curves.bounceInOut,

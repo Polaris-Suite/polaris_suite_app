@@ -3,16 +3,18 @@ import 'package:polaris_suite_app/resources/colors/colors.dart';
 // import 'package:polaris_suite_app/resources/styles/text_styles.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({
+  CustomButton({
     super.key,
     required this.color,
     required this.btntxt,
     required this.onPressed,
+    this.isloading = false,
     required this.btntxtColor,
   });
   final Color color;
   final String btntxt;
   final Color btntxtColor;
+  bool isloading;
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
@@ -33,13 +35,15 @@ class CustomButton extends StatelessWidget {
           ],
         ),
         child: Center(
-          child: Text(
-            btntxt,
-            style: TextStyle(
-              fontFamily: 'Sen',
-              color: btntxtColor,
-            ),
-          ),
+          child: isloading == false
+              ? Text(
+                  btntxt,
+                  style: TextStyle(
+                    fontFamily: 'Sen',
+                    color: btntxtColor,
+                  ),
+                )
+              : CircularProgressIndicator(),
         ),
       ),
     );

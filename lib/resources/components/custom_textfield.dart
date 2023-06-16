@@ -24,41 +24,38 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      child: TextFormField(
-        controller: textEditingController,
-        focusNode: focusNode,
-        keyboardType: keyboardType,
-        obscureText: obscureText,
-        validator: onValidator,
-        onFieldSubmitted: onFiledSubmittedValue,
-        style: const TextStyle(
-          color: AppColors.neutralDark,
-        ),
-        decoration: const InputDecoration(
-          filled: true,
-          fillColor: Colors.white,
-          border: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: AppColors.primaryColor,
-                width: 0,
-              ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(4),
-              )),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.white,
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
+    return TextFormField(
+      controller: textEditingController,
+      focusNode: focusNode,
+      keyboardType: keyboardType,
+      obscureText: obscureText,
+      validator: onValidator,
+      onFieldSubmitted: onFiledSubmittedValue,
+      style: const TextStyle(
+        color: AppColors.neutralDark,
+      ),
+      decoration: const InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        border: OutlineInputBorder(
             borderSide: BorderSide(
               color: AppColors.primaryColor,
+              width: 0,
             ),
             borderRadius: BorderRadius.all(
               Radius.circular(4),
-            ),
+            )),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.white,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.primaryColor,
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(4),
           ),
         ),
       ),
