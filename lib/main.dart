@@ -3,6 +3,7 @@ import 'package:polaris_suite_app/resources/colors/colors.dart';
 import 'package:polaris_suite_app/utils/routes/routes.dart';
 import 'package:polaris_suite_app/utils/routes/routes_name.dart';
 import 'package:polaris_suite_app/view_model/auth_view_model.dart';
+import 'package:polaris_suite_app/view_model/wrapper_screen_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -20,7 +21,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => AuthProvider(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => WrapperScreenViewProvider(),
+        ),
       ],
       child: MaterialApp(
         title: 'Polaris Suite',
@@ -31,7 +35,7 @@ class MyApp extends StatelessWidget {
             iconTheme: const IconThemeData(
               color: AppColors.neutralDark,
             )),
-        initialRoute: RoutesName.signup,
+        initialRoute: RoutesName.bottomNavBar,
         onGenerateRoute: Routes.generateRoutes,
       ),
     );

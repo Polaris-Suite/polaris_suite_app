@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:polaris_suite_app/resources/colors/colors.dart';
 import 'package:polaris_suite_app/utils/utils.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AuthProvider with ChangeNotifier {
   //for url
-  String? url = dotenv.env['BACKEND_URL_WITH_PORT'];
+  // String? url = dotenv.env['BACKEND_URL_WITH_PORT'];
 
   //for loading
   bool _isloading = false;
@@ -25,7 +25,7 @@ class AuthProvider with ChangeNotifier {
     setLoading(true);
     try {
       final resp = await http.post(
-        Uri.parse('$url/auth/register'),
+        Uri.parse('/auth/register'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -66,7 +66,7 @@ class AuthProvider with ChangeNotifier {
   void login(String email, String password, BuildContext context) async {
     try {
       final response = await http.post(
-        Uri.parse('$url/auth/register'),
+        Uri.parse('/auth/register'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

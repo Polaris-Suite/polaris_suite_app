@@ -1,4 +1,7 @@
 class RoutesName {
+  //splash screen route
+  static const String splash = 'splash_screen';
+
   //login screen route
   static const String login = "login_screen";
 
@@ -10,4 +13,7 @@ class RoutesName {
 
   //reset password screen route name
   static const String resetPassword = "reset_password_screen";
+
+  //bottomNavBar Screens
+  static const String bottomNavBar = "bottom_navbar";
 }
