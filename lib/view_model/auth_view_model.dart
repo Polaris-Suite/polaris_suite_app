@@ -9,6 +9,7 @@ import 'package:polaris_suite_app/utils/utils.dart';
 class AuthProvider with ChangeNotifier {
   //for url
   // String? url = dotenv.env['BACKEND_URL_WITH_PORT'];
+  String? baseUrl = 'https://polaris-suite-server.onrender.com';
 
   //for loading
   bool _isloading = false;
@@ -25,7 +26,7 @@ class AuthProvider with ChangeNotifier {
     setLoading(true);
     try {
       final resp = await http.post(
-        Uri.parse('/auth/register'),
+        Uri.parse('$baseUrl/auth/register'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
