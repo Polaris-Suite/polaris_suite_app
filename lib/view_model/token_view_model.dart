@@ -10,10 +10,11 @@ class SharedPreferencesToken {
   }
 
   //getToken
-  Future<TokenModel> getUser() async {
+  Future<Access> getUser() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
-    dynamic token = sp.getString('token');
-    return TokenModel(token: token);
+    String? token = sp.getString('token');
+    // return token;
+    return Access(token: token);
   }
 
   //removerUser

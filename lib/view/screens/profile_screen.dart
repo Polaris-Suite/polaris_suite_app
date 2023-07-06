@@ -36,10 +36,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 color: AppColors.primaryColor,
                 btntxt: 'Log out',
                 onPressed: () {
-                  // SharedPreferencesToken sharedPreferencesToken =
-                  //     SharedPreferencesToken();
-                  // sharedPreferencesToken.removeUser();
-                  // Navigator.pushNamed(context, RoutesName.login);
+                  SharedPreferencesToken sharedPreferencesToken =
+                      SharedPreferencesToken();
+                  sharedPreferencesToken.removeUser();
+                  Navigator.pushNamed(context, RoutesName.login);
                 },
                 btntxtColor: Colors.white,
               ),

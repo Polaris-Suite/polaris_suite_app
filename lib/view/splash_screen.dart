@@ -21,17 +21,24 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     sharedPreferencesToken.getUser().then((value) {
-      if (value.token?.access?.token.toString() == 'null') {
+      if (value.token.toString() == 'null') {
+        print('object inside empty token');
         Timer(const Duration(seconds: 3), () {
           Navigator.pushNamed(context, RoutesName.login);
         });
       } else {
-        Timer(const Duration(seconds: 3), () {
-          Navigator.pushNamed(context, RoutesName.bottomNavBar);
-        });
+        print('object');
+        print(value.token.toString());
+        // print(value.token!.access!.token.toString());
+        Timer(
+          const Duration(seconds: 3),
+          () {
+            Navigator.pushNamed(context, RoutesName.bottomNavBar);
+          },
+        );
       }
     }).onError((error, stackTrace) {
-      print('error ayo mula!!');
+      print('error ayo !!');
       print(error.toString());
     });
   }

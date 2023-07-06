@@ -2,9 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:polaris_suite_app/models/token_model.dart';
+import 'package:polaris_suite_app/models/user_model.dart';
 import 'package:polaris_suite_app/resources/colors/colors.dart';
 import 'package:polaris_suite_app/utils/routes/routes_name.dart';
 import 'package:polaris_suite_app/utils/utils.dart';
+import 'package:polaris_suite_app/view_model/token_view_model.dart';
 // import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AuthProvider with ChangeNotifier {
@@ -21,6 +24,8 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  //for storing token
+  SharedPreferencesToken sharedPreferencesToken = SharedPreferencesToken();
   //Register
   void register(
       String email, String name, String password, BuildContext context) async {
@@ -81,12 +86,38 @@ class AuthProvider with ChangeNotifier {
       if (response.statusCode == 200) {
         setLoading(false);
         print(response.body);
-        // Utils.flushbarErrorMessage(context, mssg, color)
-        // Navigator.push(context, route)
-        Navigator.pushNamed(context, RoutesName.bottomNavBar);
+        final decodedResp = jsonDecode(response.body.toString());
+        UserModel userModel = UserModel.fromJson(decodedResp);
+        print('===================>');
+        print(jsonEncode(userModel.user!.email.toString()));
+        /////////////////////////////////
+        TokenModel tokenModel = TokenModel.fromJson(decodedResp);
+        print('========================>');
+        print(jsonEncode(tokenModel.token!.access!.token.toString()));
+        // Navigator.pushNamed(context, RoutesName.bottomNavBar);
+
+        print('============================>');
+        print(tokenModel.toJson());
+
+        print('=========================>>>>>>>>>>');
+        print('HHHHHHHHHHHHHHHHHHHHHHHHHHHHH');
+
+        sharedPreferencesToken
+            .saveUser(
+          TokenModel.fromJson(decodedResp),
+        )
+            .then((value) {
+          print('SUCCESS');
+          Navigator.pushNamed(context, RoutesName.bottomNavBar);
+        }).onError((error, stackTrace) {
+          print('error');
+        });
+
+        //
       } else {
         print(response.statusCode);
         setLoading(false);
+        // ignore: use_build_context_synchronously
         Utils.flushbarErrorMessage(
             context, response.statusCode.toString(), AppColors.secondaryColor);
       }

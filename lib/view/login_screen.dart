@@ -9,6 +9,7 @@ import 'package:polaris_suite_app/resources/styles/text_styles.dart';
 import 'package:polaris_suite_app/utils/routes/routes_name.dart';
 import 'package:polaris_suite_app/utils/utils.dart';
 import 'package:polaris_suite_app/view_model/auth_view_model.dart';
+import 'package:polaris_suite_app/view_model/token_view_model.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -24,6 +25,9 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailFocusNode = FocusNode();
   final TextEditingController _passwordController = TextEditingController();
   final passwordFocusNode = FocusNode();
+
+  //sp
+  SharedPreferencesToken sharedPreferencesToken = SharedPreferencesToken();
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
