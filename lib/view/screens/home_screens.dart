@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                   itemBuilder: (context, index) {
-                    return ListTile(
+                    return const ListTile(
                       leading: Icon(Icons.link),
                       title: Text('MAJOR PPROJECT -BE2018SE/ POLARIS .....'),
                       subtitle: Text('You were requested'),

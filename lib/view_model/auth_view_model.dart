@@ -85,7 +85,7 @@ class AuthProvider with ChangeNotifier {
       );
       if (response.statusCode == 200) {
         setLoading(false);
-        print(response.body);
+        // print(response.body);
         final decodedResp = jsonDecode(response.body.toString());
         UserModel userModel = UserModel.fromJson(decodedResp);
         print('===================>');
@@ -115,16 +115,25 @@ class AuthProvider with ChangeNotifier {
 
         //
       } else {
-        print(response.statusCode);
+        // print(response.statusCode);
         setLoading(false);
         // ignore: use_build_context_synchronously
         Utils.flushbarErrorMessage(
-            context, response.statusCode.toString(), AppColors.secondaryColor);
+            context, 'Email or Password invalid', AppColors.secondaryColor);
       }
     } catch (e) {
       setLoading(false);
       Utils.flushbarErrorMessage(
           context, e.toString(), AppColors.secondaryColor);
     }
+  }
+
+  //reset password
+  void resetPassword(String? email) async {
+    try {
+      final response = await http.post(
+        Uri.parse('$baseUrl/auth/forgotpassword'),
+      );
+    } catch (e) {}
   }
 }
