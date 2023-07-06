@@ -64,7 +64,7 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  //logi
+  //login
   void login(String email, String password, BuildContext context) async {
     setLoading(true);
     try {
@@ -80,6 +80,7 @@ class AuthProvider with ChangeNotifier {
       );
       if (response.statusCode == 200) {
         setLoading(false);
+        print(response.body);
         // Utils.flushbarErrorMessage(context, mssg, color)
         // Navigator.push(context, route)
         Navigator.pushNamed(context, RoutesName.bottomNavBar);

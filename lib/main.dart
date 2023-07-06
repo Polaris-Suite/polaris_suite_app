@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             iconTheme: const IconThemeData(
               color: AppColors.neutralDark,
             )),
-        initialRoute: RoutesName.login,
+        initialRoute: RoutesName.splash,
         onGenerateRoute: Routes.generateRoutes,
       ),
     );

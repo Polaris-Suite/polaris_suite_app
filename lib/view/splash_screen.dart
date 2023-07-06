@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:polaris_suite_app/resources/colors/colors.dart';
+import 'package:polaris_suite_app/utils/routes/routes_name.dart';
+import 'package:polaris_suite_app/view_model/token_view_model.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -9,14 +13,34 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  SharedPreferencesToken sharedPreferencesToken = SharedPreferencesToken();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    sharedPreferencesToken.getUser().then((value) {
+      if (value.token?.access?.token.toString() == 'null') {
+        Timer(const Duration(seconds: 3), () {
+          Navigator.pushNamed(context, RoutesName.login);
+        });
+      } else {
+        Timer(const Duration(seconds: 3), () {
+          Navigator.pushNamed(context, RoutesName.bottomNavBar);
+        });
+      }
+    }).onError((error, stackTrace) {
+      print('error ayo mula!!');
+      print(error.toString());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Center(
-        child: Image(
-          image: AssetImage('assetName'),
-        ),
+        child: Text('data'),
       ),
     );
   }
