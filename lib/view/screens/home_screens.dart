@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:polaris_suite_app/resources/colors/colors.dart';
 import 'package:polaris_suite_app/resources/components/custom_textfield.dart';
+import 'package:polaris_suite_app/resources/dimensions/dimensions.dart';
 import 'package:polaris_suite_app/resources/styles/text_styles.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -39,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             const Text(
                               'Home',
-                              style: AppTextStyle.textH3,
+                              style: AppTextStyle.textH2,
                             ),
                             Row(
                               children: [
@@ -77,12 +79,61 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
 
                 //SHORTCUT
-                // Text('SHORTCUT'),
+                ListTileTheme(
+                  // data: Theme.of(context).copyWith(
+                  //   unselectedWidgetColor: AppColors.secondaryColor,
+                  //   // here for close state
+                  //   colorScheme: ColorScheme.light(
+                  //     primary: AppColors.primaryColor,
+                  //   ), // here for open state in replacement of deprecated accentColor
+                  //   dividerColor: Colors.transparent,
+                  //   // if you want to remove the border
+                  // ),
+                  contentPadding: EdgeInsets.all(0),
+                  child: ExpansionTile(
+                    title: Text(
+                      'Shortcut',
+                      style: AppTextStyle.textH3,
+                    ),
+                    trailing: Icon(Icons.more_horiz),
+                    children: [
+                      ListTile(
+                        leading: Icon(
+                          Icons.abc,
+                          color: Colors.red,
+                        ),
+                        title: Text('HHHHHHHH'),
+                        subtitle: Text('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+                      ),
 
+                      //
+                      ListTile(
+                        leading: Icon(
+                          Icons.abc,
+                          color: Colors.green,
+                        ),
+                        title: Text('HHHHHHHH'),
+                        subtitle: Text('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+                      ),
+
+                      //
+                      ListTile(
+                        leading: Icon(
+                          Icons.abc,
+                          color: Colors.amber,
+                        ),
+                        title: Text('HHHHHHHH'),
+                        subtitle: Text('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+                      ),
+                    ],
+                  ),
+                ),
+
+                vSizedBox2,
                 //RECENT
                 const Text(
                   'RECENT',
-                  style: AppTextStyle.textH6,
+                  style: AppTextStyle.textH3,
                 ),
                 ListView.separated(
                   shrinkWrap: true,
