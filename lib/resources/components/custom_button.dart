@@ -43,7 +43,9 @@ class CustomButton extends StatelessWidget {
                     color: btntxtColor,
                   ),
                 )
-              : CircularProgressIndicator(),
+              : const CircularProgressIndicator(
+                  color: Colors.white,
+                ),
         ),
       ),
     );

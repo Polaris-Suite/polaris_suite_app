@@ -213,6 +213,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   _userNameController.text.toString(),
                                   _passwordController.text.toString(),
                                   context);
+
+                              //clear text fields
+                              _emailController.clear();
+                              _userNameController.clear();
+                              _passwordController.clear();
+                              _confirmPasswordController.clear();
                             }
                           },
                         ),

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:polaris_suite_app/resources/colors/colors.dart';
+import 'package:polaris_suite_app/utils/routes/routes_name.dart';
 import 'package:polaris_suite_app/utils/utils.dart';
 // import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -51,7 +52,7 @@ class AuthProvider with ChangeNotifier {
         setLoading(false);
         // ignore: use_build_context_synchronously
         Utils.flushbarErrorMessage(
-            context, 'Invalid response', AppColors.neutralGray);
+            context, 'User has already been created!', AppColors.neutralGray);
       }
     } catch (e) {
       setLoading(false);
@@ -65,9 +66,10 @@ class AuthProvider with ChangeNotifier {
 
   //logi
   void login(String email, String password, BuildContext context) async {
+    setLoading(true);
     try {
       final response = await http.post(
-        Uri.parse('/auth/register'),
+        Uri.parse('$baseUrl/auth/login'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -77,13 +79,18 @@ class AuthProvider with ChangeNotifier {
         }),
       );
       if (response.statusCode == 200) {
+        setLoading(false);
         // Utils.flushbarErrorMessage(context, mssg, color)
         // Navigator.push(context, route)
+        Navigator.pushNamed(context, RoutesName.bottomNavBar);
       } else {
+        print(response.statusCode);
+        setLoading(false);
         Utils.flushbarErrorMessage(
             context, response.statusCode.toString(), AppColors.secondaryColor);
       }
     } catch (e) {
+      setLoading(false);
       Utils.flushbarErrorMessage(
           context, e.toString(), AppColors.secondaryColor);
     }

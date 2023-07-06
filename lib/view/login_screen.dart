@@ -8,6 +8,8 @@ import 'package:polaris_suite_app/resources/images/images.dart';
 import 'package:polaris_suite_app/resources/styles/text_styles.dart';
 import 'package:polaris_suite_app/utils/routes/routes_name.dart';
 import 'package:polaris_suite_app/utils/utils.dart';
+import 'package:polaris_suite_app/view_model/auth_view_model.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -24,6 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final passwordFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       body: SafeArea(
@@ -114,10 +117,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         vSizedBox3,
                         CustomButton(
                           btntxt: 'Login',
+                          isloading: authProvider.isloading,
                           btntxtColor: Colors.white,
                           color: AppColors.primaryColor,
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {}
+                            if (_formKey.currentState!.validate()) {
+                              authProvider.login(
+                                  _emailController.text.toString(),
+                                  _passwordController.text.toString(),
+                                  context);
+                            }
                           },
                         ),
                         vSizedBox2,
