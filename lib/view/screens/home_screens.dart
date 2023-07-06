@@ -64,6 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         )
                       : TextFormField(
+                          controller: _searchTextController,
                           decoration: InputDecoration(
                               border: const OutlineInputBorder(),
                               hintText: 'Search',
@@ -141,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: 20,
                   separatorBuilder: (context, index) {
                     return Container(
-                      height: 0.5,
+                      height: 0.3,
                       width: MediaQuery.of(context).size.width,
                       color: Colors.black,
                     );
