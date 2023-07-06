@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:polaris_suite_app/resources/colors/colors.dart';
+import 'package:polaris_suite_app/resources/images/images.dart';
 import 'package:polaris_suite_app/utils/routes/routes_name.dart';
 import 'package:polaris_suite_app/view_model/token_view_model.dart';
 
@@ -37,10 +38,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Center(
-        child: Text('data'),
+        child: Image(
+          image: AssetImage(logoImage),
+        ),
       ),
     );
   }
