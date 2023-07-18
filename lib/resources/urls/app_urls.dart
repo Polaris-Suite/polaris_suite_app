@@ -1,7 +1,7 @@
 class AppUrls {
-  static var baseUrl = "";
+  static var baseUrl = "http://localhost:8000";
 
-  static var loginEndPoints = "$baseUrl + ";
+  static var loginEndPoints = "$baseUrl/auth/login";
 
-  static var registerEndPoints = "";
+  static var registerEndPoints = "$baseUrl/auth/register";
 }
