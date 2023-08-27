@@ -17,7 +17,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 15,
+            horizontal: 25,
             vertical: 10,
           ),
           child: SingleChildScrollView(
@@ -26,24 +26,20 @@ class _NotificationScreenState extends State<NotificationScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //Header
-                Padding(
-                    padding: const EdgeInsets.symmetric(),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Notifications',
-                          style: AppTextStyle.textH2,
-                        ),
-                      ],
-                    )),
-
-                vSizedBox2,
-                //RECENT
-                // const Text(
-                //   'RECENT',
-                //   style: AppTextStyle.textH3,
-                // ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Notifications',
+                      style: AppTextStyle.textH1,
+                    ),
+                  ],
+                ),
+                vSizedBox3,
+                const Text(
+                  'Recent Activities',
+                  style: AppTextStyle.textH3,
+                ),
                 ListView.separated(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),

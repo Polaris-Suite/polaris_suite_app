@@ -38,13 +38,14 @@ class CustomTextField extends StatelessWidget {
         filled: true,
         fillColor: Colors.white,
         border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppColors.primaryColor,
-              width: 0,
-            ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(4),
-            )),
+          borderSide: BorderSide(
+            color: AppColors.primaryColor,
+            width: 0,
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(4),
+          ),
+        ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Colors.white,
