@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:polaris_suite_app/resources/dimensions/dimensions.dart';
 import 'package:polaris_suite_app/resources/styles/text_styles.dart';
+import 'package:polaris_suite_app/view_model/screens_viewmode.dart/notification_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -12,6 +14,7 @@ class NotificationScreen extends StatefulWidget {
 class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
+    final notiProvider = Provider.of<NotificationViewModel>(context);
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       body: SafeArea(
@@ -42,7 +45,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 ),
                 //
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    notiProvider.getActivities();
+                  },
                   child: Text('data'),
                 )
               ],

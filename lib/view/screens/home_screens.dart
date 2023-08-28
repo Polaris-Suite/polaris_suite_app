@@ -34,7 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 //Header
                 const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       'Home',
@@ -44,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 vSizedBox3,
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
                       'Shortcuts',
