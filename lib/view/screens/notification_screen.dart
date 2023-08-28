@@ -40,25 +40,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   'Recent Activities',
                   style: AppTextStyle.textH3,
                 ),
-                ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 20,
-                  separatorBuilder: (context, index) {
-                    return Container(
-                      height: 0.3,
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.black,
-                    );
-                  },
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      leading: Icon(Icons.link),
-                      title: Text('MAJOR PPROJECT -BE2018SE/ POLARIS .....'),
-                      subtitle: Text('You were requested'),
-                    );
-                  },
-                ),
+                //
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text('data'),
+                )
               ],
             ),
           ),
