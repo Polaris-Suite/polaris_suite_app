@@ -22,6 +22,18 @@ class _ProjectScreenState extends State<ProjectScreen> {
   final TextEditingController _projectDesc = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   final prov = Provider.of<ProjectScreenViewModel>(context, listen: false);
+  //   prov.getProjectList();
+  // }
+  Future<void> _refreshProjects() async {
+    final projectProvider = Provider.of<ProjectScreenViewModel>(context);
+    await projectProvider.getProjectList();
+  }
+
   @override
   Widget build(BuildContext context) {
     final projectProvider = Provider.of<ProjectScreenViewModel>(context);
@@ -54,6 +66,10 @@ class _ProjectScreenState extends State<ProjectScreen> {
                   'Create',
                   style: AppTextStyle.textH3,
                 ),
+                // const Text(
+                //   'Create',
+                //   style: AppTextStyle.textH3,
+                // ),
                 vSizedBox2,
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
@@ -181,80 +197,90 @@ class _ProjectScreenState extends State<ProjectScreen> {
                   ),
                 ),
                 vSizedBox3,
-                Container(
-                  child: FutureBuilder(
-                    future: projectProvider.getProjectList(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return GridView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 200,
-                              childAspectRatio: 3 / 2,
-                              crossAxisSpacing: 15,
-                              mainAxisSpacing: 15,
-                            ),
-                            itemCount: snapshot.data!.projects!.length,
-                            itemBuilder: (BuildContext ctx, index) {
-                              final data = snapshot.data!.projects![index];
-                              return GestureDetector(
-                                onTap: () async {
-                                  SharedPreferences sharedPreferences =
-                                      await SharedPreferences.getInstance();
+                RefreshIndicator(
+                  onRefresh: () {
+                    setState(() {});
+                    return projectProvider.getProjectList();
+                  },
+                  child: Container(
+                    child: FutureBuilder(
+                      future: projectProvider.getProjectList(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return GridView.builder(
+                              shrinkWrap: true,
+                              physics: const AlwaysScrollableScrollPhysics(),
+                              gridDelegate:
+                                  const SliverGridDelegateWithMaxCrossAxisExtent(
+                                maxCrossAxisExtent: 200,
+                                childAspectRatio: 3 / 2,
+                                crossAxisSpacing: 15,
+                                mainAxisSpacing: 15,
+                              ),
+                              itemCount: snapshot.data!.projects!.length,
+                              itemBuilder: (BuildContext ctx, index) {
+                                final data = snapshot.data!.projects![index];
+                                return GestureDetector(
+                                  onTap: () async {
+                                    SharedPreferences sharedPreferences =
+                                        await SharedPreferences.getInstance();
 
-                                  sharedPreferences.setString('pid', data.sId.toString());
-                                  String? projectID = sharedPreferences.getString('pid');
-                                  print(projectID ?? 'nl');
-                                  // print(data.sId.toString());
-                                  // print('object');
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => ProjectDetailsTabBarScreen(
-                                          appTitle: data.name.toString(),
-                                        ),
-                                      ));
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(2),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          data.name.toString(),
-                                          textAlign: TextAlign.start,
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20,
+                                    sharedPreferences.setString(
+                                        'pid', data.sId.toString());
+                                    String? projectID =
+                                        sharedPreferences.getString('pid');
+                                    print(projectID ?? 'nl');
+                                    // print(data.sId.toString());
+                                    // print('object');
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              ProjectDetailsTabBarScreen(
+                                            appTitle: data.name.toString(),
                                           ),
-                                        ),
-                                        vSizedBox2,
-                                        Text(
-                                          "Created at:\n${data.updatedAt.toString().trim()}",
-                                          style: const TextStyle(
-                                            fontSize: 10,
+                                        ));
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(2),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            data.name.toString(),
+                                            textAlign: TextAlign.start,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20,
+                                            ),
                                           ),
-                                        )
-                                      ],
+                                          vSizedBox2,
+                                          Text(
+                                            "Created at:\n${data.updatedAt.toString().trim()}",
+                                            style: const TextStyle(
+                                              fontSize: 10,
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              );
-                            });
-                      }
-                      return const Center(
-                        child: CircularProgressIndicator(
-                          color: AppColors.primaryColor,
-                        ),
-                      );
-                    },
+                                );
+                              });
+                        }
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.primaryColor,
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ],

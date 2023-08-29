@@ -10,6 +10,7 @@ import 'package:polaris_suite_app/view_model/screens_viewmode.dart/notification_
 import 'package:polaris_suite_app/view_model/screens_viewmode.dart/project_dropdown_viewmodel.dart';
 import 'package:polaris_suite_app/view_model/screens_viewmode.dart/project_screen_viewmodel.dart';
 import 'package:polaris_suite_app/view_model/screens_viewmode.dart/shortcuts_viewmodel.dart';
+import 'package:polaris_suite_app/view_model/screens_viewmode.dart/testcases_viewmodel.dart';
 import 'package:polaris_suite_app/view_model/wrapper_screen_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -55,6 +56,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => DetailsViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => TestCasesViewModel(),
         ),
       ],
       child: MaterialApp(

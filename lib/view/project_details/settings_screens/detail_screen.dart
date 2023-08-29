@@ -21,6 +21,15 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   final TextEditingController _projectName = TextEditingController();
   final TextEditingController _projectDesc = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _projectDesc.dispose();
+    _projectName.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final detailsProv = Provider.of<DetailsViewModel>(context);
@@ -39,7 +48,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               children: [
                 const Text('Project Name'),
                 TextFormField(
-                  // controller: _projectName,
+                  controller: _projectName,
                   validator: (value) {
                     if (value!.isEmpty || value == null) {
                       return "Can't be empty";
@@ -55,7 +64,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 vSizedBox2,
                 const Text('Project Description'),
                 TextFormField(
-                  // controller: _projectDesc,
+                  controller: _projectDesc,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
@@ -103,8 +112,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   color: Colors.green.shade200,
                   btntxt: 'Update Project',
                   onPressed: () {
-                    detailsProv.updateProject(_projectName.text.toString(),
-                        _projectDesc.text.toString(), context);
+                    detailsProv
+                        .updateProject(_projectName.text.toString(),
+                            _projectDesc.text.toString(), context)
+                        .then((value) {
+                      _projectName.clear();
+                      _projectDesc.clear();
+                    });
                   },
                   btntxtColor: Colors.green.shade900,
                 ),
