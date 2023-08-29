@@ -8,6 +8,7 @@ import 'package:polaris_suite_app/utils/utils.dart';
 import 'package:polaris_suite_app/view/project_details/project_details_tabbar.dart';
 import 'package:polaris_suite_app/view_model/screens_viewmode.dart/project_screen_viewmodel.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProjectScreen extends StatefulWidget {
   const ProjectScreen({super.key});
@@ -198,7 +199,14 @@ class _ProjectScreenState extends State<ProjectScreen> {
                             itemBuilder: (BuildContext ctx, index) {
                               final data = snapshot.data!.projects![index];
                               return GestureDetector(
-                                onTap: () {
+                                onTap: () async {
+                                  SharedPreferences sharedPreferences =
+                                      await SharedPreferences.getInstance();
+
+                                  sharedPreferences.setString('pid', data.sId.toString());
+                                  String? projectID = sharedPreferences.getString('pid');
+                                  print(projectID ?? 'nl');
+                                  // print(data.sId.toString());
                                   // print('object');
                                   Navigator.push(
                                       context,

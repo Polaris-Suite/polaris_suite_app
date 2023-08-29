@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polaris_suite_app/resources/colors/colors.dart';
 import 'package:polaris_suite_app/resources/dimensions/dimensions.dart';
 import 'package:polaris_suite_app/resources/styles/text_styles.dart';
 import 'package:polaris_suite_app/view_model/screens_viewmode.dart/notification_viewmodel.dart';
@@ -24,6 +25,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             vertical: 10,
           ),
           child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,13 +45,66 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   'Recent Activities',
                   style: AppTextStyle.textH3,
                 ),
+                vSizedBox2,
+                Container(
+                  child: FutureBuilder(
+                    future: notiProvider.getActivities(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: snapshot.data!.activities!.length,
+                          itemBuilder: (context, index) {
+                            final data = snapshot.data!.activities![index];
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 4.0,
+                              ),
+                              child: ListTile(
+                                contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 0,
+                                  horizontal: 0,
+                                ),
+                                leading: CircleAvatar(
+                                  backgroundColor:
+                                      data.status.toString() == 'project-create'
+                                          ? Colors.green.shade300
+                                          : Colors.orange.shade300,
+                                  child: data.status.toString() == 'project-create'
+                                      ? const Icon(
+                                          Icons.create_new_folder_rounded,
+                                          color: Colors.white,
+                                        )
+                                      : const Icon(Icons.group),
+                                ),
+                                title: Text(
+                                  data.name.toString(),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                subtitle: Text(data.description.toString()),
+                              ),
+                            );
+                          },
+                        );
+                      }
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: AppColors.primaryColor,
+                        ),
+                      );
+                    },
+                  ),
+                ),
                 //
-                ElevatedButton(
-                  onPressed: () {
-                    notiProvider.getActivities();
-                  },
-                  child: Text('data'),
-                )
+                // ElevatedButton(
+                //   onPressed: () {
+                //     notiProvider.getActivities();
+                //   },
+                //   child: Text('data'),
+                // )
               ],
             ),
           ),

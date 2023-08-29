@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ProjectScreenViewModel with ChangeNotifier {
   //baser url
   String? baseUrl = dotenv.env['Local_Host'];
+  List<String> projectNames = [];
 
   //for loading
   bool _isloading = false;
@@ -21,6 +22,13 @@ class ProjectScreenViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  String _selectedProject = ''; // Field to store the selected project name
+  String get selectedProject => _selectedProject;
+
+  void setSelectedProject(String project) {
+    _selectedProject = project;
+    notifyListeners();
+  }
   //
   // List<Project> _projects = [];
 
@@ -89,14 +97,7 @@ class ProjectScreenViewModel with ChangeNotifier {
         if (kDebugMode) {
           print(decodedResp.toString());
         }
-        print('======================================================>>>>>>>>>>');
-        print(ProjectModel.fromJson(decodedResp));
         return ProjectModel.fromJson(decodedResp);
-        // final Map<String, dynamic> jsonData = json.decode(response.body);
-        // final List<dynamic> projectsJson = jsonData[
-        //     'projects']; // Change 'projects' to the actual key in your API response
-        // _projects =
-        //     projectsJson.map((projectJson) => Project.fromJson(projectJson)).toList();
       } else {
         if (kDebugMode) {
           print(decodedResp);

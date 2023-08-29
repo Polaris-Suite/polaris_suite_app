@@ -7,6 +7,7 @@ import 'package:polaris_suite_app/models/user_model.dart';
 import 'package:polaris_suite_app/resources/colors/colors.dart';
 import 'package:polaris_suite_app/utils/routes/routes_name.dart';
 import 'package:polaris_suite_app/utils/utils.dart';
+import 'package:polaris_suite_app/view_model/email_view_model.dart';
 import 'package:polaris_suite_app/view_model/token_view_model.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:polaris_suite_app/view_model/userid_view_model.dart';
@@ -28,6 +29,7 @@ class AuthProvider with ChangeNotifier {
   //for storing token
   SharedPreferencesToken sharedPreferencesToken = SharedPreferencesToken();
   SharedPreferencesUserId sharedPreferencesUserId = SharedPreferencesUserId();
+  SharedPreferencesUserEmail sharedPreferencesUserEmail = SharedPreferencesUserEmail();
   //Register
   void register(String email, String name, String password, BuildContext context) async {
     setLoading(true);
@@ -103,6 +105,8 @@ class AuthProvider with ChangeNotifier {
 
         print('=========================>>>>>>>>>>');
         print('HHHHHHHHHHHHHHHHHHHHHHHHHHHHH');
+
+        sharedPreferencesUserEmail.saveUser(UserModel.fromJson(decodedResp));
         sharedPreferencesUserId.saveUser(UserModel.fromJson(decodedResp));
 
         sharedPreferencesToken
@@ -127,6 +131,7 @@ class AuthProvider with ChangeNotifier {
       }
     } catch (e) {
       setLoading(false);
+      // print('========================================>');
       Utils.flushbarErrorMessage(context, e.toString(), AppColors.secondaryColor);
     }
   }

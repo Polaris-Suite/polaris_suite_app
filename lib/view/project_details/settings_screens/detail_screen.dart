@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:polaris_suite_app/resources/components/custom_button.dart';
 import 'package:polaris_suite_app/resources/dimensions/dimensions.dart';
 import 'package:polaris_suite_app/resources/styles/text_styles.dart';
+import 'package:polaris_suite_app/view_model/screens_viewmode.dart/details_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({super.key});
@@ -16,8 +18,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   // List of items for the dropdown
   final List<String> _dropdownItems = ['Active', 'On Hold', 'Complete'];
+
+  final TextEditingController _projectName = TextEditingController();
+  final TextEditingController _projectDesc = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final detailsProv = Provider.of<DetailsViewModel>(context);
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
@@ -96,7 +102,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 CustomButton(
                   color: Colors.green.shade200,
                   btntxt: 'Update Project',
-                  onPressed: () {},
+                  onPressed: () {
+                    detailsProv.updateProject(_projectName.text.toString(),
+                        _projectDesc.text.toString(), context);
+                  },
                   btntxtColor: Colors.green.shade900,
                 ),
                 vSizedBox2,
