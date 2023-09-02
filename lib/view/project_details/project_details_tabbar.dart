@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polaris_suite_app/models/project_model.dart';
 import 'package:polaris_suite_app/resources/colors/colors.dart';
 import 'package:polaris_suite_app/view/project_details/activities_screen.dart';
 import 'package:polaris_suite_app/view/project_details/environment_screen.dart';
@@ -6,7 +7,10 @@ import 'package:polaris_suite_app/view/project_details/settings_screen.dart';
 import 'package:polaris_suite_app/view/project_details/testcase_screen.dart';
 
 class ProjectDetailsTabBarScreen extends StatefulWidget {
-  const ProjectDetailsTabBarScreen({super.key, required this.appTitle});
+  ProjectDetailsTabBarScreen({
+    super.key,
+    required this.appTitle,
+  });
   final String? appTitle;
 
   @override
@@ -101,7 +105,19 @@ class _ProjectDetailsTabBarScreenState extends State<ProjectDetailsTabBarScreen>
                     ActivitiesScreen(),
                   ],
                 ),
-              )
+              ),
+              // Expanded(child: ListView.builder(
+              //   itemBuilder: (context, index) {
+              //     return ListView.builder(
+              //       // itemCount: widget.environments.l,
+              //       itemBuilder: (context, index) {
+              //         return ListTile(
+              //           title: Text(widget.environments.name.toString()),
+              //         );
+              //       },
+              //     );
+              //   },
+              // ))
             ],
           ),
         ),

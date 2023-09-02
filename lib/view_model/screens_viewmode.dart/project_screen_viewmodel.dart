@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -94,9 +95,12 @@ class ProjectScreenViewModel with ChangeNotifier {
       );
       final decodedResp = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        if (kDebugMode) {
-          print(decodedResp.toString());
-        }
+        // print('============================>>>>>>');
+        // print(decodedResp);
+        // if (kDebugMode) {
+        //   log(decodedResp);
+        // }
+
         return ProjectModel.fromJson(decodedResp);
       } else {
         if (kDebugMode) {

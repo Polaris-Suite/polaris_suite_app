@@ -1,16 +1,19 @@
 import 'dart:convert';
 // import 'dart:math';
-import 'dart:developer';
+// import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:polaris_suite_app/models/testcase_models.dart';
+// import 'package:polaris_suite_app/models/testcase_models.dart';
+import 'package:polaris_suite_app/models/testcase_specific.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TestCasesViewModel with ChangeNotifier {
   //baser url
   String? baseUrl = dotenv.env['Local_Host'];
-  Future<TestcaseModel> getTestCasesData() async {
+
+  Future<Testcase> getTestCaseData() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     final token = sp.getString('token');
     final projectId = sp.getString('pid');
@@ -21,15 +24,18 @@ class TestCasesViewModel with ChangeNotifier {
         'Authorization': 'Bearer $token',
       },
     );
-    final decodedResp = jsonDecode(response.body.toString());
-    print(decodedResp.toString());
     if (response.statusCode == 200) {
+      print('object');
       print(response.statusCode.toString());
-      return TestcaseModel.fromJson(decodedResp);
-      // print(decodedResp);
+      final decodedResp = jsonDecode(response.body.toString());
+      print('======================================>');
+      print(decodedResp.toString());
+      print('======================================>');
+      // print(TestcaseSpecific.fromJson(decodedResp));
+      return Testcase.fromJson(decodedResp);
     } else {
       print(response.statusCode.toString());
     }
-    return TestcaseModel.fromJson(decodedResp);
+    return Testcase();
   }
 }

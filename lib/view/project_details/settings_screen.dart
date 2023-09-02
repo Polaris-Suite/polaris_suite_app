@@ -16,7 +16,7 @@ class _SettingScreensState extends State<SettingScreens> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         backgroundColor: Colors.grey.shade100,
         body: Padding(
@@ -50,9 +50,9 @@ class _SettingScreensState extends State<SettingScreens> {
                     Tab(
                       text: 'Collab.',
                     ),
-                    Tab(
-                      text: 'Notifi.',
-                    ),
+                    // Tab(
+                    //   text: 'Notifi.',
+                    // ),
                   ],
                 ),
               ),
@@ -61,7 +61,7 @@ class _SettingScreensState extends State<SettingScreens> {
                   children: [
                     DetailsScreen(),
                     CollaborationScreen(),
-                    SettingsNotificaitonScreen(),
+                    // SettingsNotificaitonScreen(),
                   ],
                 ),
               )

@@ -11,8 +11,8 @@ class DetailsViewModel with ChangeNotifier {
   String? baseUrl = dotenv.env['Local_Host'];
 
   Future<void> updateProject(String name, String desc, BuildContext context) async {
-    print(name.toString());
-    print(desc.toString());
+    // print(name.toString());
+    // print(desc.toString());
     SharedPreferences sp = await SharedPreferences.getInstance();
     final token = sp.getString('token');
     final projectId = sp.getString('pid');

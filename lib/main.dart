@@ -3,6 +3,7 @@ import 'package:polaris_suite_app/resources/colors/colors.dart';
 import 'package:polaris_suite_app/utils/routes/routes.dart';
 import 'package:polaris_suite_app/utils/routes/routes_name.dart';
 import 'package:polaris_suite_app/view_model/auth_view_model.dart';
+import 'package:polaris_suite_app/view_model/screens_viewmode.dart/comment_viewmodel.dart';
 import 'package:polaris_suite_app/view_model/screens_viewmode.dart/details_viewmodel.dart';
 import 'package:polaris_suite_app/view_model/screens_viewmode.dart/environment_viewmodel.dart';
 import 'package:polaris_suite_app/view_model/screens_viewmode.dart/home_screen_viewmodel.dart';
@@ -59,6 +60,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => TestCasesViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CommentViewModel(),
         ),
       ],
       child: MaterialApp(

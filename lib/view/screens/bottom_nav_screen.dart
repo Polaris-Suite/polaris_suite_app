@@ -19,7 +19,7 @@ class BottomNavScreen extends StatefulWidget {
 class _BottomNavScreenState extends State<BottomNavScreen> {
   //screens
   List<dynamic> screens = const [
-    HomeScreen(),
+    // HomeScreen(),
     ProjectScreen(),
     NotificationScreen(),
     ProfileScreen(),
@@ -47,18 +47,18 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
               newvalue.setNewIndex(value);
             },
             items: [
+              // BottomNavigationBarItem(
+              //   label: '',
+              //   icon: Icon(
+              //     newvalue.currentIndex == 0 ? Icons.home : Icons.home_outlined,
+              //     color: Colors.white,
+              //   ),
+              //   backgroundColor: Colors.white,
+              // ),
               BottomNavigationBarItem(
                 label: '',
                 icon: Icon(
-                  newvalue.currentIndex == 0 ? Icons.home : Icons.home_outlined,
-                  color: Colors.white,
-                ),
-                backgroundColor: Colors.white,
-              ),
-              BottomNavigationBarItem(
-                label: '',
-                icon: Icon(
-                  newvalue.currentIndex == 1
+                  newvalue.currentIndex == 0
                       ? Icons.create_new_folder
                       : Icons.create_new_folder_outlined,
                   color: Colors.white,
@@ -70,7 +70,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
               BottomNavigationBarItem(
                 label: '',
                 icon: Icon(
-                  newvalue.currentIndex == 2
+                  newvalue.currentIndex == 1
                       ? Icons.notifications
                       : Icons.notifications_none,
                   color: Colors.white,
@@ -82,7 +82,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
               BottomNavigationBarItem(
                 label: '',
                 icon: Icon(
-                  newvalue.currentIndex == 3 ? Icons.people : Icons.people_outline,
+                  newvalue.currentIndex == 2 ? Icons.people : Icons.people_outline,
                   color: Colors.white,
                 ),
               ),
