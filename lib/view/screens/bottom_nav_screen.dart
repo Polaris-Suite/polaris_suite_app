@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:polaris_suite_app/resources/colors/colors.dart';
 // import 'package:polaris_suite_app/view/screens/document_explore_screen.dart';
 // import 'package:polaris_suite_app/view/screens/explore_document_screen.dart';
-import 'package:polaris_suite_app/view/screens/home_screens.dart';
+// import 'package:polaris_suite_app/view/screens/home_screens.dart';
 import 'package:polaris_suite_app/view/screens/notification_screen.dart';
 import 'package:polaris_suite_app/view/screens/profile_screen.dart';
 import 'package:polaris_suite_app/view/screens/project_screen.dart';

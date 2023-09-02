@@ -21,7 +21,7 @@ class _ProjectDetailsTabBarScreenState extends State<ProjectDetailsTabBarScreen>
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 2,
       child: Scaffold(
         backgroundColor: Colors.grey.shade100,
         appBar: AppBar(
@@ -75,11 +75,6 @@ class _ProjectDetailsTabBarScreenState extends State<ProjectDetailsTabBarScreen>
                   tabs: [
                     Tab(
                       icon: Icon(
-                        Icons.engineering_sharp,
-                      ),
-                    ),
-                    Tab(
-                      icon: Icon(
                         Icons.text_fields_sharp,
                       ),
                     ),
@@ -88,36 +83,18 @@ class _ProjectDetailsTabBarScreenState extends State<ProjectDetailsTabBarScreen>
                         Icons.settings,
                       ),
                     ),
-                    Tab(
-                      icon: Icon(
-                        Icons.work_history,
-                      ),
-                    ),
                   ],
                 ),
               ),
               Expanded(
                 child: TabBarView(
                   children: [
-                    EnvironmentScreen(),
+                    // EnvironmentScreen(),
                     TestCaseScreens(),
                     SettingScreens(),
-                    ActivitiesScreen(),
                   ],
                 ),
               ),
-              // Expanded(child: ListView.builder(
-              //   itemBuilder: (context, index) {
-              //     return ListView.builder(
-              //       // itemCount: widget.environments.l,
-              //       itemBuilder: (context, index) {
-              //         return ListTile(
-              //           title: Text(widget.environments.name.toString()),
-              //         );
-              //       },
-              //     );
-              //   },
-              // ))
             ],
           ),
         ),

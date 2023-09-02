@@ -5,6 +5,7 @@ import 'package:polaris_suite_app/resources/components/custom_textfield.dart';
 import 'package:polaris_suite_app/resources/dimensions/dimensions.dart';
 import 'package:polaris_suite_app/resources/styles/text_styles.dart';
 import 'package:polaris_suite_app/utils/utils.dart';
+import 'package:polaris_suite_app/view/project_details/environments/environment_screen.dart';
 import 'package:polaris_suite_app/view/project_details/project_details_tabbar.dart';
 import 'package:polaris_suite_app/view_model/screens_viewmode.dart/project_screen_viewmodel.dart';
 import 'package:provider/provider.dart';
@@ -29,10 +30,10 @@ class _ProjectScreenState extends State<ProjectScreen> {
   //   final prov = Provider.of<ProjectScreenViewModel>(context, listen: false);
   //   prov.getProjectList();
   // }
-  Future<void> _refreshProjects() async {
-    final projectProvider = Provider.of<ProjectScreenViewModel>(context);
-    await projectProvider.getProjectList();
-  }
+  // Future<void> _refreshProjects() async {
+  //   final projectProvider = Provider.of<ProjectScreenViewModel>(context);
+  //   await projectProvider.getProjectList();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +65,23 @@ class _ProjectScreenState extends State<ProjectScreen> {
                     ],
                   ),
                   vSizedBox3,
-                  const Text(
-                    'Create',
-                    style: AppTextStyle.textH3,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Create',
+                        style: AppTextStyle.textH3,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {});
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green.shade300,
+                        ),
+                        child: Icon(Icons.replay),
+                      )
+                    ],
                   ),
                   // const Text(
                   //   'Create',
@@ -310,7 +325,18 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                               width: MediaQuery.of(context).size.width,
                                               height: 30,
                                               child: ElevatedButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  Navigator.push(context,
+                                                      MaterialPageRoute(
+                                                    builder: (context) {
+                                                      return UpdatedEnvironmentScreen(
+                                                        appTitle: data.name.toString(),
+                                                        environments:
+                                                            data.environments!.toList(),
+                                                      );
+                                                    },
+                                                  ));
+                                                },
                                                 style: ElevatedButton.styleFrom(
                                                   backgroundColor: AppColors.primaryColor,
                                                 ),

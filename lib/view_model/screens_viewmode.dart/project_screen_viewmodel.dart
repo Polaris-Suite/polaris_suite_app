@@ -96,7 +96,7 @@ class ProjectScreenViewModel with ChangeNotifier {
       final decodedResp = jsonDecode(response.body);
       if (response.statusCode == 200) {
         // print('============================>>>>>>');
-        // print(decodedResp);
+        print(decodedResp);
         // if (kDebugMode) {
         //   log(decodedResp);
         // }
