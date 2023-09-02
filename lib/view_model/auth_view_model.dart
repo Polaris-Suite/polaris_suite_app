@@ -7,13 +7,15 @@ import 'package:polaris_suite_app/models/user_model.dart';
 import 'package:polaris_suite_app/resources/colors/colors.dart';
 import 'package:polaris_suite_app/utils/routes/routes_name.dart';
 import 'package:polaris_suite_app/utils/utils.dart';
+import 'package:polaris_suite_app/view_model/email_view_model.dart';
 import 'package:polaris_suite_app/view_model/token_view_model.dart';
-// import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:polaris_suite_app/view_model/userid_view_model.dart';
 
 class AuthProvider with ChangeNotifier {
   //for url
-  // String? url = dotenv.env['BACKEND_URL_WITH_PORT'];
-  String? baseUrl = 'https://polaris-suite-server.onrender.com';
+  String? baseUrl = dotenv.env['Local_Host'];
+  // String? baseUrl = 'https://polaris-suite-server.onrender.com';
 
   //for loading
   bool _isloading = false;
@@ -26,9 +28,10 @@ class AuthProvider with ChangeNotifier {
 
   //for storing token
   SharedPreferencesToken sharedPreferencesToken = SharedPreferencesToken();
+  SharedPreferencesUserId sharedPreferencesUserId = SharedPreferencesUserId();
+  SharedPreferencesUserEmail sharedPreferencesUserEmail = SharedPreferencesUserEmail();
   //Register
-  void register(
-      String email, String name, String password, BuildContext context) async {
+  void register(String email, String name, String password, BuildContext context) async {
     setLoading(true);
     try {
       final resp = await http.post(
@@ -64,8 +67,7 @@ class AuthProvider with ChangeNotifier {
       //
       print('object');
       //
-      Utils.flushbarErrorMessage(
-          context, e.toString(), AppColors.secondaryColor);
+      Utils.flushbarErrorMessage(context, e.toString(), AppColors.secondaryColor);
     }
   }
 
@@ -87,9 +89,11 @@ class AuthProvider with ChangeNotifier {
         setLoading(false);
         // print(response.body);
         final decodedResp = jsonDecode(response.body.toString());
+        print(decodedResp.toString());
         UserModel userModel = UserModel.fromJson(decodedResp);
         print('===================>');
         print(jsonEncode(userModel.user!.email.toString()));
+        print(jsonEncode(userModel.toString()));
         /////////////////////////////////
         TokenModel tokenModel = TokenModel.fromJson(decodedResp);
         print('========================>');
@@ -102,6 +106,9 @@ class AuthProvider with ChangeNotifier {
         print('=========================>>>>>>>>>>');
         print('HHHHHHHHHHHHHHHHHHHHHHHHHHHHH');
 
+        sharedPreferencesUserEmail.saveUser(UserModel.fromJson(decodedResp));
+        sharedPreferencesUserId.saveUser(UserModel.fromJson(decodedResp));
+
         sharedPreferencesToken
             .saveUser(
           TokenModel.fromJson(decodedResp),
@@ -110,12 +117,13 @@ class AuthProvider with ChangeNotifier {
           print('SUCCESS');
           Navigator.pushNamed(context, RoutesName.bottomNavBar);
         }).onError((error, stackTrace) {
+          setLoading(false);
           print('error');
         });
 
         //
       } else {
-        // print(response.statusCode);
+        print(response.statusCode);
         setLoading(false);
         // ignore: use_build_context_synchronously
         Utils.flushbarErrorMessage(
@@ -123,8 +131,8 @@ class AuthProvider with ChangeNotifier {
       }
     } catch (e) {
       setLoading(false);
-      Utils.flushbarErrorMessage(
-          context, e.toString(), AppColors.secondaryColor);
+      // print('========================================>');
+      Utils.flushbarErrorMessage(context, e.toString(), AppColors.secondaryColor);
     }
   }
 

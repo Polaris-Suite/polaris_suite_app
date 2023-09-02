@@ -155,6 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             btntxtColor: Colors.white,
                             color: AppColors.primaryColor,
                             onPressed: () {
+                              print(authProvider.isloading);
                               if (_formKey.currentState!.validate()) {
                                 authProvider.login(
                                     _emailController.text.toString(),
